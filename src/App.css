@@ -1,0 +1,13 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f9fafb;
+}
+.lobster {
+  font-family: "Lobster", sans-serif;
+}
+/* * {
+  outline: 1px solid red !important;
+} */
+.Toastify__toast-container {
+  z-index: 9999 !important;
+}
