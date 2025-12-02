@@ -1,19 +1,77 @@
 import React, { useEffect, useState } from "react";
 import { FaCheckToSlot } from "react-icons/fa6";
-import { useParams, useNavigate } from "react-router";
+import { useParams, useNavigate, Link } from "react-router";
 import useAxios from "../hooks/useAxios";
 import Loading from "../components/Loading";
-
+import useAuth from "../hooks/useAuth";
+import { IoArrowBackSharp } from "react-icons/io5";
+import { FaUser } from "react-icons/fa";
+import Swal from "sweetalert2";
 const SkillDetails = () => {
   const { id } = useParams();
   const [skill, setSkill] = useState(null);
   const axiosInstance = useAxios();
+  const { user } = useAuth();
 
   useEffect(() => {
     axiosInstance.get(`/skills/${id}`).then((res) => setSkill(res.data));
   }, [axiosInstance, id]);
 
   const navigate = useNavigate();
+
+  const handleBooking = (id) => {
+    if (!skill || !user) return;
+
+    // Prevent multiple bookings
+    if (skill.bookedUsers?.includes(user.email)) {
+      Swal.fire(
+        "Already Booked",
+        "You have already booked this skill.",
+        "info"
+      );
+      return;
+    }
+
+    if (skill.slots === 0) {
+      Swal.fire("No Slots", "No slots available for this skill.", "error");
+      return;
+    }
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Book now!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const updatedData = {
+          slots: skill.slots - 1,
+          bookedUsers: [...(skill.bookedUsers || []), user.email],
+        };
+
+        axiosInstance
+          .patch(`/skills/${id}`, updatedData)
+          .then((res) => {
+            if (res.data.modifiedCount) {
+              setSkill({ ...skill, ...updatedData });
+
+              Swal.fire(
+                "Booked!",
+                "You have successfully booked this skill.",
+                "success"
+              );
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+            Swal.fire("Error", "Something went wrong.", "error");
+          });
+      }
+    });
+  };
 
   if (!skill) {
     return <Loading />;
@@ -36,6 +94,12 @@ const SkillDetails = () => {
   return (
     <section className="py-16 bg-gray-50 min-h-screen">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+        <p
+          onClick={() => navigate(-1)}
+          className="text-xl font-bold text-primary mb-4 flex items-center gap-2 cursor-pointer"
+        >
+          <IoArrowBackSharp /> Go Back
+        </p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Image Section */}
           <div className="bg-white rounded-3xl shadow-md p-4">
@@ -67,7 +131,7 @@ const SkillDetails = () => {
               )}
               <div>
                 <p className="text-xl font-semibold text-gray-800">
-                  {userName}
+                  {userName}(Instructor)
                 </p>
                 <p className="text-sm text-gray-500">{email}</p>
               </div>
@@ -98,19 +162,33 @@ const SkillDetails = () => {
 
             {/* Action Buttons */}
             <div className="flex gap-5 pt-6">
-              <button
-                onClick={() => alert("Book functionality coming soon")}
-                className="btn btn-primary text-white"
-              >
-                Book Now
-              </button>
-
-              <button
-                onClick={() => navigate(-1)}
-                className="btn btn-outline btn-primary"
-              >
-                Go Back
-              </button>
+              {user?.email === email ? (
+                <p className="flex items-start text-sm lg:items-center gap-1">
+                  <FaUser /> Owned By You{" "}
+                  <Link
+                    to="/my-offered-skills"
+                    className="text-error underline"
+                  >
+                    Manage Availability
+                  </Link>
+                </p>
+              ) : !user ? (
+                <Link
+                  to="/auth/login"
+                  className="text-primary underline font-bold"
+                >
+                  Login to book a skill
+                </Link>
+              ) : skill.slots === 0 ? (
+                <p className="text-error font-bold">No Slots Available</p>
+              ) : (
+                <button
+                  onClick={() => handleBooking(skill._id)}
+                  className="btn btn-primary text-white"
+                >
+                  Book Now
+                </button>
+              )}
             </div>
           </div>
         </div>
