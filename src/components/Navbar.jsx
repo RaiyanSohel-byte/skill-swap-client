@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { GiSkills } from "react-icons/gi";
 import { MdLocalOffer, MdOutlineInventory } from "react-icons/md";
+import { GrCheckboxSelected } from "react-icons/gr";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../contexts/AuthContext/AuthContext";
 
@@ -223,7 +224,11 @@ const Navbar = () => {
                 <li>
                   <NavLink
                     to="/profile"
-                    className="hover:bg-base-100 rounded-lg px-2 py-1"
+                    className={({ isActive }) =>
+                      `${
+                        isActive && "bg-primary text-white"
+                      }  rounded-lg px-2 py-1`
+                    }
                   >
                     <FaUser /> My Profile
                   </NavLink>
@@ -231,7 +236,11 @@ const Navbar = () => {
                 <li>
                   <NavLink
                     to="/offer-skills"
-                    className="hover:bg-base-100 rounded-lg px-2 py-1"
+                    className={({ isActive }) =>
+                      `${
+                        isActive && "bg-primary text-white"
+                      }  rounded-lg px-2 py-1`
+                    }
                   >
                     <MdLocalOffer /> Offer Skills
                   </NavLink>
@@ -240,9 +249,25 @@ const Navbar = () => {
                 <li>
                   <NavLink
                     to="/my-offered-skills"
-                    className="hover:bg-base-100 rounded-lg px-2 py-1"
+                    className={({ isActive }) =>
+                      `${
+                        isActive && "bg-primary text-white"
+                      }  rounded-lg px-2 py-1`
+                    }
                   >
                     <MdOutlineInventory /> My Offered Skills
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/my-bookings"
+                    className={({ isActive }) =>
+                      `${
+                        isActive && "bg-primary text-white"
+                      }  rounded-lg px-2 py-1`
+                    }
+                  >
+                    <GrCheckboxSelected /> My Bookings
                   </NavLink>
                 </li>
 
@@ -251,7 +276,7 @@ const Navbar = () => {
                 <li>
                   <button
                     onClick={handleLogout}
-                    className="btn btn-sm w-full bg-primary text-base-100 hover:bg-primary/90 transition-all"
+                    className="btn btn-sm w-full bg-primary  text-base-100 hover:bg-primary/90 transition-all"
                   >
                     Log Out
                   </button>

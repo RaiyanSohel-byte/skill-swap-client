@@ -9,77 +9,88 @@ import { Link } from "react-router";
 const ProfileCard = () => {
   const { user } = use(AuthContext);
 
-  const fadeIn = useSpring({
-    from: { opacity: 0, transform: "translateY(30px)" },
-    to: { opacity: 1, transform: "translateY(0)" },
-    config: { tension: 180, friction: 20 },
+  const fade = useSpring({
+    from: { opacity: 0, y: 20 },
+    to: { opacity: 1, y: 0 },
+    config: { tension: 180, friction: 18 },
   });
 
   return (
-    <div className="min-h-screen flex justify-center items-center py-10 px-3 sm:px-6 lg:px-8">
+    <div className="min-h-screen  py-10 px-4 sm:px-6 lg:px-10">
       <animated.div
-        style={fadeIn}
-        className="w-full max-w-[95%] sm:max-w-3xl md:max-w-4xl shadow-2xl rounded-xl overflow-hidden border border-gray-100 relative"
+        style={fade}
+        className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-8"
       >
-        <div className="relative bg-gradient-to-r from-primary/70 via-primary/80 to-primary/90 h-48 sm:h-56 md:h-64 flex items-center justify-center sm:justify-start px-4 sm:px-8">
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent rounded-t-2xl" />
+        {/* LEFT SIDEBAR */}
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 flex flex-col items-center text-center">
+          <img
+            src={user?.photoURL || userImg}
+            alt="Profile"
+            className="w-32 h-32 rounded-full object-cover border-4 border-primary/20 shadow-md"
+          />
 
-          <div className="absolute left-1/2 sm:left-10 transform -translate-x-1/2 sm:translate-x-0">
-            <img
-              src={user?.photoURL || userImg}
-              alt={user?.displayName || "User"}
-              className="w-18 h-18  md:w-36 md:h-36 rounded-full border-4 border-white mb-4 lg:mb-0 shadow-xl object-cover bg-white"
-            />
-          </div>
-
-          <div className="text-white sm:ml-44 mt-28 sm:mt-0 text-center sm:text-left">
-            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold drop-shadow-lg">
-              {user?.displayName
-                ? user.displayName
-                : "Update your profile to add a name"}
-            </h1>
-            <p className="flex justify-center sm:justify-start items-center gap-2 text-sm sm:text-base text-white flex-wrap break-all max-w-full sm:max-w-md">
-              <FaEnvelope className="opacity-80" /> {user?.email}
-            </p>
-          </div>
-        </div>
-
-        <div className="pt-20 sm:pt-24 p-5 sm:p-8 md:p-10 bg-secondary/30">
-          <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-5 sm:mb-6 border-b pb-2">
-            Profile Information
+          <h2 className="mt-4 text-2xl font-bold text-gray-800">
+            {user?.displayName || "Unnamed User"}
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-            <div className="bg-secondary border border-primary/30 p-4 sm:p-5 rounded-xl hover:shadow-sm transition">
-              <p className="text-xs sm:text-sm uppercase tracking-wide text-gray-500 mb-1">
-                Full Name
-              </p>
-              <p className="text-gray-800 font-medium break-words">
-                {user?.displayName
-                  ? user.displayName
-                  : "Update your profile to add a name"}
+          <p className="flex items-center gap-2 mt-2 text-gray-600 break-all">
+            <FaEnvelope className="text-primary" /> {user?.email}
+          </p>
+
+          <Link
+            to="/profile/update-profile"
+            className="
+              mt-6
+              inline-flex items-center gap-2
+              px-5 py-2.5
+              bg-primary text-white
+              rounded-lg shadow hover:bg-primary/90
+              transition-all
+            "
+          >
+            <FaUserEdit /> Edit Profile
+          </Link>
+        </div>
+
+        {/* MAIN CONTENT */}
+        <div className="md:col-span-2 bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
+          <h1 className="text-3xl font-bold text-gray-800 mb-6">
+            Account Overview
+          </h1>
+
+          {/* PROFILE STATS */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+            <div className="p-5 bg-primary/10 rounded-xl border border-primary/20">
+              <p className="text-sm text-gray-600">Full Name</p>
+              <p className="text-xl font-semibold text-gray-800 mt-1">
+                {user?.displayName || "No name available"}
               </p>
             </div>
 
-            <div className="bg-secondary border border-primary/30 p-4 sm:p-5 rounded-xl hover:shadow-sm transition">
-              <p className="text-xs sm:text-sm uppercase tracking-wide text-gray-500 mb-1">
-                Email Address
-              </p>
-              <p className="text-gray-800 font-medium break-words">
+            <div className="p-5 bg-primary/10 rounded-xl border border-primary/20">
+              <p className="text-sm text-gray-600">Email Address</p>
+              <p className="text-xl font-semibold text-gray-800 mt-1 break-words max-w-full">
                 {user?.email}
               </p>
             </div>
+
+            <div className="p-5 bg-primary/10 rounded-xl border border-primary/20">
+              <p className="text-sm text-gray-600">Account Status</p>
+              <p className="text-xl font-semibold text-green-600 mt-1">
+                Active
+              </p>
+            </div>
           </div>
 
-          <div className="mt-8 sm:mt-10 flex justify-center sm:justify-end">
-            <animated.button style={fadeIn}>
-              <Link
-                to={`/profile/update-profile`}
-                className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-md bg-primary text-white font-semibold hover:bg-primary/90 shadow-md hover:shadow-lg transition-all text-sm sm:text-base"
-              >
-                <FaUserEdit /> Update Profile
-              </Link>
-            </animated.button>
+          {/* MORE SECTIONS */}
+          <div>
+            <h2 className="text-xl font-semibold text-gray-800 mb-4">
+              Recent Activity
+            </h2>
+
+            <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-gray-600">
+              No recent activity found.
+            </div>
           </div>
         </div>
       </animated.div>

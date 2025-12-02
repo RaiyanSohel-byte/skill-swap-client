@@ -63,6 +63,20 @@ const SkillDetails = () => {
                 "You have successfully booked this skill.",
                 "success"
               );
+              axiosInstance
+                .post("/bookings", {
+                  skillId: skill._id,
+                  email: user.email,
+                  skillName: skill.skillName,
+                  price: skill.price,
+                  providerEmail: skill.email,
+                  providerName: skill.userName,
+                })
+                .then((res) => {
+                  if (res.data.insertedId) {
+                    console.log(res.data.acknowledged);
+                  }
+                });
             }
           })
           .catch((err) => {

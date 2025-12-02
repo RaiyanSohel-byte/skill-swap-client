@@ -1,16 +1,37 @@
-import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
-import useAxios from "../hooks/useAxios";
+import { useLoaderData } from "react-router";
+import { useState, useMemo } from "react";
 
 const AllSkills = () => {
-  const axiosInstance = useAxios();
-  const [skills, setSkills] = useState([]);
+  const skills = useLoaderData();
 
-  useEffect(() => {
-    axiosInstance.get("/skills").then((res) => {
-      setSkills(res.data);
-    });
-  }, [axiosInstance]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortOption, setSortOption] = useState("latest");
+
+  // --- Filter + Sort Logic ---
+  const filteredAndSortedSkills = useMemo(() => {
+    let filtered = skills.filter(
+      (skill) =>
+        skill.skillName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        skill.shortDescription.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    switch (sortOption) {
+      case "price-low":
+        filtered.sort((a, b) => a.price - b.price);
+        break;
+      case "price-high":
+        filtered.sort((a, b) => b.price - a.price);
+        break;
+
+      case "latest":
+      default:
+        filtered.sort((a, b) => new Date(b.postedAt) - new Date(a.postedAt));
+        break;
+    }
+
+    return filtered;
+  }, [skills, searchQuery, sortOption]);
 
   return (
     <div className="my-20 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,16 +48,21 @@ const AllSkills = () => {
             type="text"
             placeholder="Search skills..."
             className="input input-bordered w-full"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
 
         {/* Sort */}
         <div className="w-full md:w-1/4">
-          <select className="select select-bordered w-full">
+          <select
+            className="select select-bordered w-full"
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+          >
             <option value="latest">Latest</option>
             <option value="price-low">Price: Low to High</option>
             <option value="price-high">Price: High to Low</option>
-            <option value="rating">Rating</option>
           </select>
         </div>
       </div>
@@ -47,8 +73,8 @@ const AllSkills = () => {
         data-aos="fade-up"
         data-aos-delay="200"
       >
-        {skills.length > 0 ? (
-          skills.map((skill) => (
+        {filteredAndSortedSkills.length > 0 ? (
+          filteredAndSortedSkills.map((skill) => (
             <Card
               key={skill.skillId}
               skill={skill}

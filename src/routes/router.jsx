@@ -18,6 +18,7 @@ import AllSkills from "../pages/AllSkills";
 import ContactSection from "../pages/ContactSection";
 import OfferSkills from "../pages/OfferSkills";
 import MySkills from "../pages/MySkills";
+import MyBookings from "../pages/MyBookings";
 
 export const router = createBrowserRouter([
   {
@@ -33,7 +34,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "all-skills",
-        loader: () => fetch("/data.json"),
+        loader: () => fetch("http://localhost:5000/skills"),
         element: <AllSkills />,
         hydrateFallbackElement: <Loading />,
       },
@@ -42,6 +43,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MySkills />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-bookings",
+        element: (
+          <PrivateRoute>
+            <MyBookings />
           </PrivateRoute>
         ),
       },
