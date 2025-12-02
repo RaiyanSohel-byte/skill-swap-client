@@ -9,12 +9,15 @@ import Testimonial from "../components/Testimonial";
 const Home = () => {
   const skills = useLoaderData();
   return (
-    <div>
+    <div className="space-y-10 lg:space-y-20">
       <HeroSlider />
-      <SkillCard skills={skills} />
-      <HowItWorks />
-      <TopRatedProviders />
-      <Testimonial />
+
+      <div className="space-y-10 lg:space-y-[100px]">
+        <SkillCard skills={skills} />
+        <HowItWorks />
+        <TopRatedProviders />
+        <Testimonial />
+      </div>
     </div>
   );
 };

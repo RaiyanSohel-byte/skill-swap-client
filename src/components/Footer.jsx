@@ -5,11 +5,23 @@ import {
   FaInstagram,
   FaLinkedinIn,
 } from "react-icons/fa";
+import { GiSkills } from "react-icons/gi";
+import { Link } from "react-router";
 
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-200 py-10">
       <div className="max-w-[1200px] mx-auto px-4 lg:flex justify-between gap-8 text-center md:text-left space-y-5 items-start">
+        <div className="max-w-sm">
+          <Link to="/" className="lobster mb-3 flex items-center gap-1">
+            <GiSkills className="text-white text-2xl" />{" "}
+            <h3 className="text-2xl">SkillSwap</h3>
+          </Link>
+          <p className="text-gray-400">
+            About SkillSwap is an interactive skill-sharing platform where users
+            can learn, teach, and exchange skills with others.
+          </p>
+        </div>
         <div className="flex flex-col items-center md:items-start justify-center">
           <h3 className="text-xl font-semibold mb-4">Contact Info</h3>
           <p>

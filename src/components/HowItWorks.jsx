@@ -23,21 +23,14 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section className="py-16 bg-base-200">
+    <section>
       <div className="max-w-[1200px] mx-auto text-center px-5 lg:px-0">
-        <h2
-          className="text-3xl text-primary md:text-4xl font-bold mb-8"
-          data-aos="fade-up"
-        >
-          How It Works
-        </h2>
+        <h2 className="title">How It Works</h2>
         <div className="grid md:grid-cols-3 gap-8">
           {steps.map((step, index) => (
             <div
               key={index}
-              className="card bg-base-100 shadow-xl p-6 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300"
-              data-aos="fade-up"
-              data-aos-delay={index * 150} // stagger cards
+              className="card bg-base-100 shadow-sm p-6 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300"
             >
               {step.icon}
               <h3 className="text-xl font-semibold mb-2">{step.title}</h3>

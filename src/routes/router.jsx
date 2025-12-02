@@ -31,11 +31,7 @@ export const router = createBrowserRouter([
       {
         path: "all-skills",
         loader: () => fetch("/data.json"),
-        element: (
-          <PrivateRoute>
-            <AllSkills />
-          </PrivateRoute>
-        ),
+        element: <AllSkills />,
         hydrateFallbackElement: <Loading />,
       },
       {
@@ -59,11 +55,7 @@ export const router = createBrowserRouter([
       {
         path: ":id",
         loader: () => fetch("/data.json"),
-        element: (
-          <PrivateRoute>
-            <SkillDetails />
-          </PrivateRoute>
-        ),
+        element: <SkillDetails />,
         hydrateFallbackElement: <Loading />,
       },
       {

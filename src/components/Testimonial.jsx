@@ -48,22 +48,12 @@ const Testimonial = () => {
   });
 
   return (
-    <section
-      ref={ref}
-      className="relative bg-gradient-to-b from-indigo-50 via-white to-indigo-100 py-24 overflow-hidden"
-    >
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-20 w-72 h-72 bg-indigo-300/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-20 w-80 h-80 bg-purple-300/30 rounded-full blur-3xl" />
-      </div>
-
+    <section ref={ref} className="relative overflow-hidden">
       <animated.div
         style={sectionAnim}
-        className="max-w-6xl mx-auto text-center px-6"
+        className="max-w-[1200px] mx-auto text-center"
       >
-        <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-          Community <span className="text-indigo-600">Stories</span>
-        </h2>
+        <h2 className="title">Community Stories</h2>
         <p className="text-gray-600 max-w-2xl mx-auto mb-16 text-lg">
           Real people. Real exchanges. Discover how SkillSwap empowers learners
           and teachers locally.
@@ -72,14 +62,14 @@ const Testimonial = () => {
 
       <Marquee
         gradient={false}
-        speed={40} // You can tweak this for your ideal speed
+        speed={40}
         pauseOnHover={true}
-        className="mt-10"
+        className="mt-10 max-w-[1200px] py-5 mx-auto"
       >
         {stories.map((s, i) => (
           <div
             key={i}
-            className="bg-white shadow-lg rounded-2xl p-6 min-w-[250px] max-w-[400px] mx-4 flex-shrink-0 border border-gray-100 hover:shadow-2xl transition-all duration-300"
+            className="bg-white shadow-lg rounded-2xl p-6 min-w-[250px] max-w-[350px] mx-4 flex-shrink-0 border border-gray-100 hover:shadow-2xl transition-all duration-300"
           >
             <div className="h-48 w-full rounded-xl overflow-hidden mb-4">
               <img

@@ -1,2 +1,11 @@
 @import "tailwindcss";
 @plugin "daisyui";
+.title {
+  @apply text-4xl md:text-5xl font-bold mb-8 text-primary text-center;
+}
+/* * {
+  outline: 1px solid red !important;
+} */
+.title {
+  @apply text-4xl md:text-5xl font-bold mb-8 text-center text-primary;
+}

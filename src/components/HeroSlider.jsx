@@ -2,7 +2,7 @@ import React from "react";
 
 const HeroSlider = () => {
   return (
-    <div className="carousel w-full overflow-hidden">
+    <div className="carousel w-full overflow-hidden h-[60vh]">
       {/* Slide 1 */}
       <div id="slide1" className="carousel-item relative w-full max-w-full">
         <img

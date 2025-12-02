@@ -51,24 +51,19 @@ const providers = [
 
 const TopRatedProviders = () => {
   return (
-    <section className="py-12 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <h2
-          className="text-3xl font-bold text-primary text-center mb-8"
-          data-aos="fade-up"
-        >
-          Top Rated Providers
-        </h2>
+    <section>
+      <div className="max-w-[1200px] mx-auto px-4">
+        <h2 className="title">Top Rated Providers</h2>
       </div>
 
-      <div className="w-screen">
+      <div>
         <Marquee speed={50} className="py-4 max-w-[1200px] mx-auto">
           {providers.map((provider, index) => (
             <div
               key={provider.id}
               className="mx-4 card bg-white shadow-lg hover:shadow-xl transition-shadow rounded-lg p-6 text-center min-w-[250px]"
               data-aos="fade-up"
-              data-aos-delay={index * 150}
+              data-aos-delay={index * 20}
             >
               <div className="avatar mx-auto mb-4">
                 <div className="w-24 h-24 rounded-full overflow-hidden ring ring-primary ring-offset-base-100 ring-offset-2">

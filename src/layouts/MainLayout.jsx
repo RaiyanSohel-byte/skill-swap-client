@@ -17,17 +17,16 @@ const MainLayout = () => {
   }, []);
 
   return (
-    <div className="bg-base-300">
-      <header>
-        <nav>
-          <Navbar />
-        </nav>
-      </header>
+    <div>
+      <Navbar />
+
       <ScrollToTop />
-      <main>{state === "loading" ? <Loading /> : <Outlet />}</main>
-      <footer data-aos="fade-up">
-        <Footer />
-      </footer>
+      <div className="space-y-20">
+        <main>{state === "loading" ? <Loading /> : <Outlet />}</main>
+        <footer>
+          <Footer />
+        </footer>
+      </div>
     </div>
   );
 };

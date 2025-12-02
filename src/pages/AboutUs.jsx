@@ -12,12 +12,12 @@ const AboutUs = () => {
   return (
     <section className="min-h-screen bg-gray-50 text-gray-800">
       <div
-        className="relative bg-gradient-to-r from-[#422ad5] to-indigo-600 text-white py-20 text-center bg-cover bg-center bg-no-repeat"
+        className="relative bg-gradient-to-r from-[#422ad5] to-indigo-600  text-white py-20 text-center bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${bgImage})` }}
       >
         {" "}
         <div className="absolute inset-0 bg-black/40"></div>
-        <animated.div style={fadeUp} className="relative z-10 px-5">
+        <animated.div style={fadeUp} className="relative z-10 px-5 lg:px-0">
           <h1 className="lg:text-5xl text-3xl font-bold mb-4">
             About SkillSwap
           </h1>
@@ -28,9 +28,9 @@ const AboutUs = () => {
         </animated.div>
       </div>
 
-      <div className="max-w-[1200px] mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-0 py-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <animated.div style={fadeUp}>
-          <h2 className="text-3xl font-bold text-[#422ad5] mb-4">
+          <h2 className="ext-4xl md:text-5xl font-bold mb-8 text-primary">
             Our Mission
           </h2>
           <p className="text-lg leading-relaxed text-gray-600">
@@ -52,11 +52,9 @@ const AboutUs = () => {
         </animated.div>
       </div>
 
-      <div className="bg-base-200 py-16">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-[#422ad5] mb-10">
-            Our Core Values
-          </h2>
+      <div className="py-16">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-0 text-center">
+          <h2 className="title">Our Core Values</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
@@ -83,8 +81,6 @@ const AboutUs = () => {
               <div
                 key={i}
                 className="card bg-white border border-gray-200 shadow-md rounded-2xl p-8 transition-transform hover:-translate-y-2 hover:shadow-xl"
-                data-aos="fade-up"
-                data-aos-delay={i * 150}
               >
                 <div className="text-[#422ad5] mb-4 flex justify-center">
                   {item.icon}
@@ -97,10 +93,8 @@ const AboutUs = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-6 py-16 text-center">
-        <h2 className="text-3xl font-bold text-[#422ad5] mb-10">
-          Meet Our Team
-        </h2>
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-0 py-16 text-center">
+        <h2 className="title">Meet Our Team</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {[
             {

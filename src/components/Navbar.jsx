@@ -86,8 +86,8 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-white shadow-sm w-full">
-      <div className="navbar max-w-7xl mx-auto px-4">
+    <div className="bg-white shadow-sm w-full z-50 top-0 sticky">
+      <div className="navbar max-w-[1200px] mx-auto px-4 lg:px-0">
         <div className="navbar-start">
           <div className={`dropdown ${menuOpen ? "dropdown-open" : ""}`}>
             <div
@@ -149,16 +149,14 @@ const Navbar = () => {
             </ul>
           </div>
 
-          <Link
-            to="/"
-            className="lobster btn btn-ghost text-xl flex items-center gap-1"
-          >
-            <GiSkills className="text-primary text-2xl" /> SkillSwap
+          <Link to="/" className="lobster flex items-center gap-1">
+            <GiSkills className="text-primary text-2xl" />{" "}
+            <h3 className="text-2xl">SkillSwap</h3>
           </Link>
         </div>
 
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{links}</ul>
+          <ul className="menu menu-horizontal ">{links}</ul>
         </div>
 
         <div className="navbar-end gap-3">
