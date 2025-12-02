@@ -10,9 +10,9 @@ const AboutUs = () => {
   });
 
   return (
-    <section className="min-h-screen bg-gray-50 text-gray-800">
+    <section className="min-h-screen text-gray-800">
       <div
-        className="relative bg-gradient-to-r from-[#422ad5] to-indigo-600  text-white py-20 text-center bg-cover bg-center bg-no-repeat"
+        className="relative bg-gradient-to-r from-primary to-primary/80  text-white py-20 text-center bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${bgImage})` }}
       >
         {" "}
@@ -55,6 +55,9 @@ const AboutUs = () => {
       <div className="py-16">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-0 text-center">
           <h2 className="title">Our Core Values</h2>
+          <p className="subTitle">
+            Real experiences from people who leveled up with SkillSwap.
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
@@ -82,7 +85,7 @@ const AboutUs = () => {
                 key={i}
                 className="card bg-white border border-gray-200 shadow-md rounded-2xl p-8 transition-transform hover:-translate-y-2 hover:shadow-xl"
               >
-                <div className="text-[#422ad5] mb-4 flex justify-center">
+                <div className="text-primary mb-4 flex justify-center">
                   {item.icon}
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
@@ -95,6 +98,9 @@ const AboutUs = () => {
 
       <div className="max-w-[1200px] mx-auto px-6 lg:px-0 py-16 text-center">
         <h2 className="title">Meet Our Team</h2>
+        <p className="subTitle">
+          Real experiences from people who leveled up with SkillSwap.
+        </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {[
             {
@@ -125,7 +131,7 @@ const AboutUs = () => {
                 className="w-full h-64 object-cover"
               />
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-[#422ad5]">
+                <h3 className="text-xl font-semibold text-primary">
                   {member.name}
                 </h3>
                 <p className="text-gray-600">{member.role}</p>

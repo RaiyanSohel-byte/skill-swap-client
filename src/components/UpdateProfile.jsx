@@ -59,7 +59,7 @@ const UpdateProfile = () => {
 
           <button
             type="submit"
-            className="w-full cursor-pointer bg-primary text-white py-3 rounded-lg font-medium hover:bg-indigo-600 transition-colors"
+            className="w-full cursor-pointer bg-primary text-white py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors"
           >
             Update
           </button>

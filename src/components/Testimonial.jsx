@@ -54,7 +54,7 @@ const Testimonial = () => {
         className="max-w-[1200px] mx-auto text-center"
       >
         <h2 className="title">Community Stories</h2>
-        <p className="text-gray-600 max-w-2xl mx-auto mb-16 text-lg">
+        <p className="subTitle">
           Real people. Real exchanges. Discover how SkillSwap empowers learners
           and teachers locally.
         </p>
@@ -78,12 +78,12 @@ const Testimonial = () => {
                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
               />
             </div>
-            <Quote className="text-indigo-300 w-6 h-6 mb-3 mx-auto" />
+            <Quote className="text-primary w-6 h-6 mb-3 mx-auto" />
             <p className="text-gray-700 italic mb-4 leading-relaxed">
               “{s.story}”
             </p>
             <h3 className="font-semibold text-lg text-gray-900">{s.name}</h3>
-            <p className="text-sm text-indigo-600">{s.title}</p>
+            <p className="text-sm text-primary">{s.title}</p>
           </div>
         ))}
       </Marquee>

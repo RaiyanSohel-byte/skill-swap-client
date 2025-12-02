@@ -16,7 +16,10 @@ const NotFound = () => {
         <h3 className="text-5xl font-bold">Oops, page not found!</h3>
         <p>The page you are looking for is not available.</p>
         <div>
-          <Link className="btn btn-primary" onClick={() => navigate(-1)}>
+          <Link
+            className="btn btn-primary text-white"
+            onClick={() => navigate(-1)}
+          >
             Go Back
           </Link>
         </div>

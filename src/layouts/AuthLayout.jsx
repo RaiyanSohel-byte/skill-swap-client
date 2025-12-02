@@ -11,7 +11,7 @@ const AuthLayout = () => {
     });
   }, []);
   return (
-    <div className="bg-base-300">
+    <div>
       <main>
         <Outlet />
       </main>

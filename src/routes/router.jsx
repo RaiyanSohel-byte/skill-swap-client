@@ -15,6 +15,7 @@ import UpdateProfile from "../components/UpdateProfile";
 import NotFound from "../pages/NotFound";
 import Register from "../pages/Register";
 import AllSkills from "../pages/AllSkills";
+import ContactSection from "../pages/ContactSection";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
         loader: () => fetch("/data.json"),
         element: <AllSkills />,
         hydrateFallbackElement: <Loading />,
+      },
+      {
+        path: "contact",
+        element: <ContactSection />,
       },
       {
         path: "profile",

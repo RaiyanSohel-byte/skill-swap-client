@@ -26,6 +26,10 @@ export default function HowItWorks() {
     <section>
       <div className="max-w-[1200px] mx-auto text-center px-5 lg:px-0">
         <h2 className="title">How It Works</h2>
+        <p className="subTitle">
+          Learn, share, and grow—here’s how SkillSwap connects learners and
+          teachers.
+        </p>
         <div className="grid md:grid-cols-3 gap-8">
           {steps.map((step, index) => (
             <div

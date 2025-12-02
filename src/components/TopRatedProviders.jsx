@@ -54,6 +54,9 @@ const TopRatedProviders = () => {
     <section>
       <div className="max-w-[1200px] mx-auto px-4">
         <h2 className="title">Top Rated Providers</h2>
+        <p className="subTitle">
+          Meet the most trusted and talented instructors in our community.”
+        </p>
       </div>
 
       <div>
@@ -83,16 +86,16 @@ const TopRatedProviders = () => {
               </p>
               <div className="flex justify-center gap-5 mt-4">
                 <a href="">
-                  <FaSquareFacebook size={28} color="#422ad5" />
+                  <FaSquareFacebook size={28} color="#d56322" />
                 </a>
                 <a href="">
-                  <FaTwitter size={28} color="#422ad5" />
+                  <FaTwitter size={28} color="#d56322" />
                 </a>
                 <a href="">
-                  <FaLinkedin size={28} color="#422ad5" />
+                  <FaLinkedin size={28} color="#d56322" />
                 </a>
                 <a href="">
-                  <FaInstagram size={28} color="#422ad5" />
+                  <FaInstagram size={28} color="#d56322" />
                 </a>
               </div>
             </div>

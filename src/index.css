@@ -7,5 +7,14 @@
   outline: 1px solid red !important;
 } */
 .title {
-  @apply text-4xl md:text-5xl font-bold mb-8 text-center text-primary;
+  @apply text-4xl md:text-5xl font-bold mb-4 text-center text-primary;
+}
+.subTitle {
+  @apply text-gray-600 max-w-2xl mx-auto mb-10 text-center text-lg;
+}
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: #cf4b00;
+  --color-secondary: #fcf6d9;
 }

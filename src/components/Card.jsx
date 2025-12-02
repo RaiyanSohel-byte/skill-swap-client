@@ -5,7 +5,7 @@ import { Link } from "react-router";
 const Card = ({ skill }) => {
   const { skillId, skillName, price, rating, image, description } = skill;
   return (
-    <div className="card bg-base-100 w-[300px] h-[480px] lg:w-96 mx-auto shadow-sm rounded-lg">
+    <div className="card bg-base-100 w-[280px] h-[480px]  mx-auto shadow-sm rounded-lg">
       <img
         className="h-[250px] w-full rounded-t-lg"
         src={image}
@@ -13,19 +13,16 @@ const Card = ({ skill }) => {
       />
 
       <div className="card-body">
-        <div className="h-[115px]">
+        <div className="h-[140px]">
           <h2 className="card-title">
             {skillName} - ${price}
           </h2>
-          <div className="">
+          <div>
             <p>{description}</p>
-            <p className="flex mt-3  items-center gap-2 badge badge-soft badge-warning badge-outline font-bold text-md">
-              <FaStar color="orange" /> {rating}
-            </p>
           </div>
         </div>
         <div className="card-actions justify-start mt-5">
-          <Link to={`/${skillId}`} className="btn btn-primary">
+          <Link to={`/${skillId}`} className="btn btn-primary text-white">
             View Details
           </Link>
         </div>

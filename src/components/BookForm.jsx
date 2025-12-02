@@ -39,7 +39,7 @@ const BookForm = () => {
         </div>
         <button
           type="submit"
-          className="btn btn-primary w-full mx-auto flex items-center justify-center gap-2"
+          className="btn btn-primary w-full mx-auto flex items-center text-white justify-center gap-2"
         >
           <FaPaperPlane /> Submit
         </button>

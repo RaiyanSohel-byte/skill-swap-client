@@ -82,11 +82,22 @@ const Navbar = () => {
           </NavLink>
         </li>
       )}
+      <li>
+        <NavLink
+          to="/contact"
+          onClick={() => setMenuOpen(false)}
+          className={({ isActive }) =>
+            isActive ? "border-b-2 border-primary font-semibold" : ""
+          }
+        >
+          Contact Us
+        </NavLink>
+      </li>
     </>
   );
 
   return (
-    <div className="bg-white shadow-sm w-full z-50 top-0 sticky">
+    <div className="bg-secondary shadow-sm w-full z-50 top-0 sticky">
       <div className="navbar max-w-[1200px] mx-auto px-4 lg:px-0">
         <div className="navbar-start">
           <div className={`dropdown ${menuOpen ? "dropdown-open" : ""}`}>
@@ -123,7 +134,7 @@ const Navbar = () => {
                       handleLogout();
                       setMenuOpen(false);
                     }}
-                    className="btn btn-xs btn-primary my-2 w-full"
+                    className="btn btn-xs btn-primary my-2 w-full text-white"
                   >
                     Log Out
                   </button>
@@ -133,7 +144,7 @@ const Navbar = () => {
                   <Link
                     to="/auth/login"
                     onClick={() => setMenuOpen(false)}
-                    className="btn btn-xs btn-primary w-full"
+                    className="btn btn-xs btn-primary text-white w-full"
                   >
                     Login
                   </Link>
@@ -174,7 +185,7 @@ const Navbar = () => {
               </div>
               <button
                 onClick={handleLogout}
-                className="btn btn-primary btn-xs lg:btn-md"
+                className="btn btn-primary text-white btn-xs lg:btn-md"
               >
                 Log Out
               </button>
@@ -183,7 +194,7 @@ const Navbar = () => {
             <>
               <Link
                 to="/auth/login"
-                className="btn btn-primary btn-xs lg:btn-md"
+                className="btn btn-primary text-white btn-xs lg:btn-md"
               >
                 Login
               </Link>

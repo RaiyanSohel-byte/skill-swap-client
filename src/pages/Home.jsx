@@ -5,6 +5,7 @@ import { useLoaderData } from "react-router";
 import HowItWorks from "../components/HowItWorks";
 import TopRatedProviders from "../components/TopRatedProviders";
 import Testimonial from "../components/Testimonial";
+import NewsletterSection from "../components/NewsLetterSection";
 
 const Home = () => {
   const skills = useLoaderData();
@@ -17,6 +18,7 @@ const Home = () => {
         <HowItWorks />
         <TopRatedProviders />
         <Testimonial />
+        <NewsletterSection />
       </div>
     </div>
   );
