@@ -1,31 +1,16 @@
-import React, { useState } from "react";
-import { useLoaderData } from "react-router";
+import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
+import useAxios from "../hooks/useAxios";
 
 const AllSkills = () => {
-  const skills = useLoaderData();
-  const [searchTerm, setSearchTerm] = useState("");
-  const [sortBy, setSortBy] = useState("latest");
+  const axiosInstance = useAxios();
+  const [skills, setSkills] = useState([]);
 
-  // Filter & sort skills dynamically
-  const filteredSkills = skills
-    .filter((skill) =>
-      skill.skillName.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-    .sort((a, b) => {
-      switch (sortBy) {
-        case "latest":
-          return b.skillId - a.skillId;
-        case "price-low":
-          return a.price - b.price;
-        case "price-high":
-          return b.price - a.price;
-        case "rating":
-          return b.rating - a.rating;
-        default:
-          return 0;
-      }
+  useEffect(() => {
+    axiosInstance.get("/skills").then((res) => {
+      setSkills(res.data);
     });
+  }, [axiosInstance]);
 
   return (
     <div className="my-20 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,18 +27,12 @@ const AllSkills = () => {
             type="text"
             placeholder="Search skills..."
             className="input input-bordered w-full"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
 
         {/* Sort */}
         <div className="w-full md:w-1/4">
-          <select
-            className="select select-bordered w-full"
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-          >
+          <select className="select select-bordered w-full">
             <option value="latest">Latest</option>
             <option value="price-low">Price: Low to High</option>
             <option value="price-high">Price: High to Low</option>
@@ -64,12 +43,12 @@ const AllSkills = () => {
 
       {/* Skills Grid */}
       <div
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 mt-8"
         data-aos="fade-up"
         data-aos-delay="200"
       >
-        {filteredSkills.length > 0 ? (
-          filteredSkills.map((skill) => (
+        {skills.length > 0 ? (
+          skills.map((skill) => (
             <Card
               key={skill.skillId}
               skill={skill}

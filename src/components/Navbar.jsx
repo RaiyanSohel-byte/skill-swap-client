@@ -1,10 +1,12 @@
 import React, { useState, useContext } from "react";
 import { GiSkills } from "react-icons/gi";
+import { MdLocalOffer, MdOutlineInventory } from "react-icons/md";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../contexts/AuthContext/AuthContext";
 
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import { FaUser } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
@@ -70,17 +72,30 @@ const Navbar = () => {
         </NavLink>
       </li>
       {user && (
-        <li>
-          <NavLink
-            to="/profile"
-            onClick={() => setMenuOpen(false)}
-            className={({ isActive }) =>
-              isActive ? "border-b-2 border-primary font-semibold" : ""
-            }
-          >
-            My Profile
-          </NavLink>
-        </li>
+        <>
+          <li>
+            <NavLink
+              to="/offer-skills"
+              onClick={() => setMenuOpen(false)}
+              className={({ isActive }) =>
+                isActive ? "border-b-2 border-primary font-semibold" : ""
+              }
+            >
+              Offer Skills
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/profile"
+              onClick={() => setMenuOpen(false)}
+              className={({ isActive }) =>
+                isActive ? "border-b-2 border-primary font-semibold" : ""
+              }
+            >
+              My Profile
+            </NavLink>
+          </li>
+        </>
       )}
       <li>
         <NavLink
@@ -98,7 +113,7 @@ const Navbar = () => {
 
   return (
     <div className="bg-secondary shadow-sm w-full z-50 top-0 sticky">
-      <div className="navbar max-w-[1200px] mx-auto px-4 lg:px-0">
+      <div className="navbar max-w-[1200px] mx-auto px-4 xl:px-0">
         <div className="navbar-start">
           <div className={`dropdown ${menuOpen ? "dropdown-open" : ""}`}>
             <div
@@ -172,24 +187,77 @@ const Navbar = () => {
 
         <div className="navbar-end gap-3">
           {user ? (
-            <>
+            <div className="dropdown dropdown-end">
               <div
-                className="tooltip tooltip-bottom tooltip-primary "
-                data-tip={user.displayName || "User"}
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar hover:ring-1 hover:ring-primary hover:ring-offset-2 transition-all"
               >
-                <img
-                  src={user.photoURL}
-                  alt="Profile"
-                  className="w-10 h-10 ring-2 ring-blue-500 ring-offset-2 object-cover hover:ring-pink-500 transition-all duration-300 rounded-full cursor-pointer"
-                />
+                <div className="w-14 rounded-full border-2 border-primary">
+                  <img alt={user.displayName} src={user.photoURL} />
+                </div>
               </div>
-              <button
-                onClick={handleLogout}
-                className="btn btn-primary text-white btn-xs lg:btn-md"
+              <ul
+                tabIndex="-1"
+                className="menu dropdown-content bg-base-200 rounded-xl z-50 mt-3 w-64 p-4 shadow-lg border border-primary"
               >
-                Log Out
-              </button>
-            </>
+                <li className="mb-2">
+                  <div className="flex items-center gap-1 p-2 bg-base-100 rounded-lg">
+                    <img
+                      src={user.photoURL}
+                      alt={user.displayName}
+                      className="w-12 h-12 rounded-full border-2 border-primary"
+                    />
+                    <div className="flex flex-col">
+                      <span className="font-semibold text-primary">
+                        {user.displayName}
+                      </span>
+                      <span className="text-xs text-gray-400">
+                        {user.email}
+                      </span>
+                    </div>
+                  </div>
+                </li>
+
+                <li className="border-t border-primary/20 my-2"></li>
+                <li>
+                  <NavLink
+                    to="/profile"
+                    className="hover:bg-base-100 rounded-lg px-2 py-1"
+                  >
+                    <FaUser /> My Profile
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/offer-skills"
+                    className="hover:bg-base-100 rounded-lg px-2 py-1"
+                  >
+                    <MdLocalOffer /> Offer Skills
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    to="/my-offered-skills"
+                    className="hover:bg-base-100 rounded-lg px-2 py-1"
+                  >
+                    <MdOutlineInventory /> My Offered Skills
+                  </NavLink>
+                </li>
+
+                <li className="border-t border-primary/20 my-2"></li>
+
+                <li>
+                  <button
+                    onClick={handleLogout}
+                    className="btn btn-sm w-full bg-primary text-base-100 hover:bg-primary/90 transition-all"
+                  >
+                    Log Out
+                  </button>
+                </li>
+              </ul>
+            </div>
           ) : (
             <>
               <Link
