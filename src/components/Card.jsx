@@ -61,8 +61,8 @@ const Card = ({ skill }) => {
 
           {/* Action Button */}
           <Link
-            to={`/${_id}`}
-            className="btn btn-sm text-white rounded-full bg-teal-500 hover:bg-teal-600 border-none  transition duration-300 transform hover:scale-[1.05]"
+            to={`/skillDetails/${_id}`}
+            className="btn btn-sm text-white rounded-full bg-teal-500 hover:bg-teal-600 border-none transition duration-300 transform hover:scale-[1.05]"
           >
             Details
           </Link>

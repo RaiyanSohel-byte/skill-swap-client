@@ -1,12 +1,15 @@
-import React, { use } from "react";
 import { Link, useNavigate } from "react-router";
-import { AuthContext } from "../contexts/AuthContext/AuthContext";
+
 import toast from "react-hot-toast";
+import useAuth from "../hooks/useAuth";
+
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const UpdateProfile = () => {
-  const { updateUser, setUser } = use(AuthContext);
+  const { updateUser, setUser, user } = useAuth();
   const navigate = useNavigate();
 
+  const axiosSecure = useAxiosSecure();
   const handleUpdateUser = (event) => {
     event.preventDefault();
     const name = event.target.name.value;
@@ -14,9 +17,22 @@ const UpdateProfile = () => {
     const updatedUser = { displayName: name, photoURL: photo };
     updateUser(updatedUser)
       .then(() => {
-        setUser((prev) => ({ ...prev, ...updatedUser }));
-        toast.success("Profile Updated");
-        navigate("/profile");
+        axiosSecure
+          .patch(`/skills?email=${user.email}`, updatedUser)
+          .then((res) => {
+            if (res.data.matchedCount && res.data.modifiedCount) {
+              setUser((prev) => ({ ...prev, ...updatedUser }));
+              toast.success("Profile Updated");
+              navigate("/profile");
+            }
+          });
+        axiosSecure
+          .patch(`/bookings?providerEmail=${user.email}`, {
+            displayName: name,
+          })
+          .then((result) => {
+            console.log("2nd patch success", result);
+          });
       })
       .catch((error) => toast.error(error.code));
   };
@@ -41,6 +57,7 @@ const UpdateProfile = () => {
             <input
               type="text"
               name="name"
+              defaultValue={user.displayName}
               placeholder="Enter your name"
               className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               required
@@ -53,6 +70,7 @@ const UpdateProfile = () => {
               name="photo"
               placeholder="Enter your photo URL"
               className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              defaultValue={user.photoURL}
               required
             />
           </div>

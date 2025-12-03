@@ -9,7 +9,7 @@ import useAuth from "../hooks/useAuth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { loginUser, googleLogin, setEmailText } = useAuth();
+  const { loginUser, googleLogin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 

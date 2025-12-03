@@ -24,19 +24,16 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement: <NotFound />,
     children: [
       {
         index: true,
         loader: () => fetch("/data.json"),
         element: <Home />,
-        hydrateFallbackElement: <Loading />,
       },
       {
         path: "all-skills",
         loader: () => fetch("http://localhost:5000/skills"),
         element: <AllSkills />,
-        hydrateFallbackElement: <Loading />,
       },
       {
         path: "my-offered-skills",
@@ -85,9 +82,8 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        path: ":id",
+        path: "skillDetails/:id",
         element: <SkillDetails />,
-        hydrateFallbackElement: <Loading />,
       },
       {
         path: "about",
@@ -114,5 +110,9 @@ export const router = createBrowserRouter([
         element: <Register />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);

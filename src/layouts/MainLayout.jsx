@@ -22,7 +22,9 @@ const MainLayout = () => {
 
       <ScrollToTop />
       <div className="space-y-20">
-        <main>{state === "loading" ? <Loading /> : <Outlet />}</main>
+        <main>
+          <Outlet />
+        </main>
         <footer>
           <Footer />
         </footer>

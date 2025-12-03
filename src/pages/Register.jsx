@@ -113,7 +113,7 @@ const Register = () => {
               <input
                 id="image"
                 name="image"
-                type="password"
+                type="text"
                 placeholder="Your Photo"
                 className="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-primary focus:border-primary transition duration-150"
               />

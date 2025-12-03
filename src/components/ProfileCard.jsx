@@ -29,7 +29,8 @@ import {
   Cell,
 } from "recharts";
 import { LucideLayoutDashboard, LucideListCheck } from "lucide-react";
-import useAxios from "../hooks/useAxios";
+import useAuth from "../hooks/useAuth";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const StatCard = ({ icon, title, value, color }) => {
   const colorClasses = {
@@ -188,7 +189,8 @@ const ProviderBookingsChart = ({ data }) => {
 };
 
 const ProfileCard = () => {
-  const { user } = use(AuthContext);
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -202,22 +204,23 @@ const ProfileCard = () => {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const response = await fetch("http://localhost:5000/bookings");
-        if (!response.ok) {
-          throw new Error("Failed to fetch bookings data");
-        }
-        const data = await response.json();
-        setBookings(data);
+        setLoading(true);
+        const response = await axiosSecure.get(`/bookings`, {
+          params: { email: user.email },
+        });
+        setBookings(response.data);
       } catch (err) {
-        console.error("Fetch Error:", err);
-        setError(err.message);
+        console.error("AxiosSecure Error:", err);
+        setError(err.response?.data?.message || err.message);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchBookings();
-  }, []);
+    if (user?.email) {
+      fetchBookings();
+    }
+  }, [user, axiosSecure]);
 
   const totalBookings = bookings.length;
   const totalRevenue = bookings.reduce(
@@ -226,7 +229,7 @@ const ProfileCard = () => {
   );
 
   return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 max-w-[1200px] mx-auto">
+    <div className="min-h-screen py-12 px-6 lg:px-0 max-w-[1200px] mx-auto">
       <animated.div
         style={fade}
         className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-8"
@@ -276,7 +279,7 @@ const ProfileCard = () => {
             />
             <StatCard
               icon={<FaDollarSign />}
-              title="Total Revenue"
+              title="Total Cost"
               value={`$${totalRevenue.toFixed(2)}`}
               color="green"
             />
@@ -310,11 +313,7 @@ const ProfileCard = () => {
               </div>
             ) : (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Top 5 Skills */}
                 <div className="lg:col-span-2 bg-white p-6 rounded-2xl shadow-lg border border-teal-100">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-4">
-                    Top 5 Most Booked Skills
-                  </h3>
                   <TopSkillsChart data={bookings} />
                 </div>
 
