@@ -24,35 +24,69 @@ const Footer = () => {
             About SkillSwap is an interactive skill-sharing platform where users
             can learn, teach, and exchange skills with others.
           </p>
-        </div>
-        <div className="flex flex-col items-center md:items-start justify-center">
-          <h3 className="text-xl font-semibold mb-4">Contact Info</h3>
-          <p>
-            Email:{" "}
-            <a
-              href="mailto:info@skillswap.com"
-              className="hover:text-white text-gray-400"
-            >
-              info@skillswap.com
-            </a>
-          </p>
-          <p>
-            Phone:{" "}
-            <a
-              href="tel:+1234567890"
-              className="hover:text-white text-gray-400"
-            >
-              +1 234 567 890
-            </a>
-          </p>
-          <p>
-            Address:{" "}
-            <span className="text-gray-400 hover:text-white">
-              123 Skill St, Learning City
-            </span>
-          </p>
+          <div className="flex flex-col items-center md:items-start justify-center mt-5">
+            <p>
+              Email:{" "}
+              <a
+                href="mailto:info@skillswap.com"
+                className="hover:text-white text-gray-400"
+              >
+                info@skillswap.com
+              </a>
+            </p>
+            <p>
+              Phone:{" "}
+              <a
+                href="tel:+1234567890"
+                className="hover:text-white text-gray-400"
+              >
+                +1 234 567 890
+              </a>
+            </p>
+            <p>
+              Address:{" "}
+              <span className="text-gray-400 hover:text-white">
+                123 Skill St, Learning City
+              </span>
+            </p>
+          </div>
         </div>
 
+        <div className="flex flex-col items-center md:items-start justify-center">
+          <h3 className="text-xl font-semibold mb-4">Useful Links</h3>
+          <ul className="text-gray-400">
+            <li>
+              <Link to="/about" className="hover:text-white">
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link to="/all-skills" className="hover:text-white">
+                Learn Skills
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="hover:text-white">
+                Contact Us
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div className="flex flex-col items-center md:items-start justify-center">
+          <h3 className="text-xl font-semibold mb-4">Legal</h3>
+          <ul className="text-gray-400">
+            <li>
+              <a href="/privacy-policy" className="hover:text-white">
+                Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a href="/terms-of-service" className="hover:text-white">
+                Terms of Service
+              </a>
+            </li>
+          </ul>
+        </div>
         <div className="flex flex-col items-center justify-center">
           <h3 className="text-xl font-semibold mb-4">Follow Us</h3>
           <div className="flex space-x-4 justify-center">
@@ -89,22 +123,6 @@ const Footer = () => {
               <FaLinkedinIn size={20} color="#9CA3AF" />
             </a>
           </div>
-        </div>
-
-        <div className="flex flex-col items-center md:items-start justify-center">
-          <h3 className="text-xl font-semibold mb-4">Legal</h3>
-          <ul className="text-gray-400">
-            <li>
-              <a href="/privacy-policy" className="hover:text-white">
-                Privacy Policy
-              </a>
-            </li>
-            <li>
-              <a href="/terms-of-service" className="hover:text-white">
-                Terms of Service
-              </a>
-            </li>
-          </ul>
         </div>
       </div>
 

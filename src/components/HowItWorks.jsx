@@ -30,8 +30,8 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section className="py-20  font-inter">
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 text-center">
+    <section className="py-20 font-inter">
+      <div className="max-w-[1200px] mx-auto px-4 lg:px-0 text-center">
         {/* Header */}
         <h2 className="title">How It Works</h2>
         <p className="subTitle">
