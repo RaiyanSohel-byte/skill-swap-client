@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { FaRegPaperPlane } from "react-icons/fa";
 
 const NewsletterSection = () => {
@@ -6,8 +7,7 @@ const NewsletterSection = () => {
 
   const handleSubscribe = (e) => {
     e.preventDefault();
-    console.log("Subscribed:", email);
-    // API call here...
+    toast.success("Subscribed");
   };
 
   return (

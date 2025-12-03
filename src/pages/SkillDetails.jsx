@@ -22,7 +22,6 @@ const SkillDetails = () => {
   const handleBooking = (id) => {
     if (!skill || !user) return;
 
-    // Prevent multiple bookings
     if (skill.bookedUsers?.includes(user.email)) {
       Swal.fire(
         "Already Booked",
@@ -42,7 +41,7 @@ const SkillDetails = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "#0D9488",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, Book now!",
     }).then((result) => {
@@ -106,8 +105,8 @@ const SkillDetails = () => {
   } = skill;
 
   return (
-    <section className="py-16 bg-gray-50 min-h-screen">
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-16 min-h-screen">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
         <p
           onClick={() => navigate(-1)}
           className="text-xl font-bold text-primary mb-4 flex items-center gap-2 cursor-pointer"
@@ -174,7 +173,6 @@ const SkillDetails = () => {
               </p>
             </div>
 
-            {/* Action Buttons */}
             <div className="flex gap-5 pt-6">
               {user?.email === email ? (
                 <p className="flex items-start text-sm lg:items-center gap-1">
@@ -198,7 +196,7 @@ const SkillDetails = () => {
               ) : (
                 <button
                   onClick={() => handleBooking(skill._id)}
-                  className="btn btn-primary text-white"
+                  className="btn btn-primary rounded-full text-white"
                 >
                   Book Now
                 </button>

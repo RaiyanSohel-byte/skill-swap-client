@@ -1,6 +1,7 @@
 import Card from "../components/Card";
 import { useLoaderData } from "react-router";
 import { useState, useMemo } from "react";
+import { FaSearch, FaFilter } from "react-icons/fa";
 
 const AllSkills = () => {
   const skills = useLoaderData();
@@ -8,7 +9,6 @@ const AllSkills = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOption, setSortOption] = useState("latest");
 
-  // --- Filter + Sort Logic ---
   const filteredAndSortedSkills = useMemo(() => {
     let filtered = skills.filter(
       (skill) =>
@@ -18,10 +18,10 @@ const AllSkills = () => {
 
     switch (sortOption) {
       case "price-low":
-        filtered.sort((a, b) => a.price - b.price);
+        filtered.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
         break;
       case "price-high":
-        filtered.sort((a, b) => b.price - a.price);
+        filtered.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
         break;
 
       case "latest":
@@ -34,58 +34,78 @@ const AllSkills = () => {
   }, [skills, searchQuery, sortOption]);
 
   return (
-    <div className="my-20 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="my-20 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-0">
+      {/* Titles */}
       <h3 className="title">Level Up Your Skills</h3>
       <p className="subTitle">
-        Unlock your potential with courses and mentorship tailored for you
+        Unlock your potential with courses and mentorship tailored for you.
       </p>
 
-      {/* Search & Sort */}
-      <div className="flex flex-col md:flex-row justify-between items-center gap-4 mt-8">
-        {/* Search */}
-        <div className="w-full md:w-1/2">
-          <input
-            type="text"
-            placeholder="Search skills..."
-            className="input input-bordered w-full"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </div>
+      {/* --- Search & Sort Bar--- */}
+      <div className="mt-12 p-6 bg-white rounded-2xl shadow-xl border border-teal-50">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          {/* Search Input */}
+          <div className="w-full md:w-3/4 relative">
+            <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search skills or descriptions..."
+              className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-full bg-gray-50 text-gray-800
+                         focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition duration-200"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
 
-        {/* Sort */}
-        <div className="w-full md:w-1/4">
-          <select
-            className="select select-bordered w-full"
-            value={sortOption}
-            onChange={(e) => setSortOption(e.target.value)}
-          >
-            <option value="latest">Latest</option>
-            <option value="price-low">Price: Low to High</option>
-            <option value="price-high">Price: High to Low</option>
-          </select>
+          {/* Sort Dropdown */}
+          <div className="w-full md:w-1/4 relative">
+            <FaFilter className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+            <select
+              className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-full appearance-none bg-white text-gray-800
+                         focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition duration-200 cursor-pointer"
+              value={sortOption}
+              onChange={(e) => setSortOption(e.target.value)}
+            >
+              <option value="latest">Sort By: Latest</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+            </select>
+            {/* Select */}
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+              <svg
+                className="w-4 h-4 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Skills Grid */}
-      <div
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 mt-8"
-        data-aos="fade-up"
-        data-aos-delay="200"
-      >
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 mt-12">
         {filteredAndSortedSkills.length > 0 ? (
           filteredAndSortedSkills.map((skill) => (
-            <Card
-              key={skill.skillId}
-              skill={skill}
-              data-aos="zoom-in"
-              data-aos-delay="100"
-            />
+            <Card key={skill.skillId} skill={skill} />
           ))
         ) : (
-          <p className="text-center col-span-full text-gray-500">
-            No skills found.
-          </p>
+          <div className="text-center col-span-full py-20">
+            <p className="text-2xl text-gray-500 font-medium">
+              😔 No skills found matching your criteria.
+            </p>
+            <p className="text-sm text-gray-400 mt-2">
+              Try adjusting your search or sorting options.
+            </p>
+          </div>
         )}
       </div>
     </div>

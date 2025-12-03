@@ -6,11 +6,12 @@ import HowItWorks from "../components/HowItWorks";
 import TopRatedProviders from "../components/TopRatedProviders";
 import Testimonial from "../components/Testimonial";
 import NewsletterSection from "../components/NewsLetterSection";
+import FAQSection from "../components/FAQSection";
 
 const Home = () => {
   const skills = useLoaderData();
   return (
-    <div className="space-y-10 lg:space-y-20">
+    <div className="space-y-10 lg:space-y-20 px-3 lg:px-0">
       <HeroSlider />
 
       <div className="space-y-10 lg:space-y-[100px]">
@@ -18,6 +19,7 @@ const Home = () => {
         <HowItWorks />
         <TopRatedProviders />
         <Testimonial />
+        <FAQSection />
         <NewsletterSection />
       </div>
     </div>

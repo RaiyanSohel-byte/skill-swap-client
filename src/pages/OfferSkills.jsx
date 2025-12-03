@@ -156,7 +156,7 @@ const OfferSkills = () => {
           </div>
 
           {/* Submit Button */}
-          <button className="btn btn-primary w-full text-white mt-4">
+          <button className="btn rounded-full btn-primary w-full text-white mt-4">
             Post Skill
           </button>
         </form>

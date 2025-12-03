@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { GiSkills } from "react-icons/gi";
+
 import { MdLocalOffer, MdOutlineInventory } from "react-icons/md";
 import { GrCheckboxSelected } from "react-icons/gr";
 import { Link, NavLink } from "react-router";
@@ -8,6 +8,7 @@ import { AuthContext } from "../contexts/AuthContext/AuthContext";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { FaUser } from "react-icons/fa";
+import Logo from "./Logo";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
@@ -19,7 +20,7 @@ const Navbar = () => {
       text: "Are you sure you want to log out?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3b25c1",
+      confirmButtonColor: "#0D9488",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, log out!",
     }).then((result) => {
@@ -30,6 +31,7 @@ const Navbar = () => {
               title: "Logged Out!",
               text: "You have been logged out!",
               icon: "success",
+              confirmButtonColor: "#0D9488",
             })
           )
           .catch((error) => toast.error(error.code));
@@ -113,7 +115,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-secondary shadow-sm w-full z-50 top-0 sticky">
+    <div className="bg-white/95 backdrop-blur-md shadow-lg w-full z-50 top-0 sticky transition-all duration-300">
       <div className="navbar max-w-[1200px] mx-auto px-4 xl:px-0">
         <div className="navbar-start">
           <div className={`dropdown ${menuOpen ? "dropdown-open" : ""}`}>
@@ -150,7 +152,7 @@ const Navbar = () => {
                       handleLogout();
                       setMenuOpen(false);
                     }}
-                    className="btn btn-xs btn-primary my-2 w-full text-white"
+                    className="btn rounded-full btn-xs btn-primary my-2 w-full text-white"
                   >
                     Log Out
                   </button>
@@ -160,14 +162,14 @@ const Navbar = () => {
                   <Link
                     to="/auth/login"
                     onClick={() => setMenuOpen(false)}
-                    className="btn btn-xs btn-primary text-white w-full"
+                    className="btn btn-xs rounded-full btn-primary text-white w-full"
                   >
                     Login
                   </Link>
                   <Link
                     to="/auth/register"
                     onClick={() => setMenuOpen(false)}
-                    className="btn btn-xs btn-outline btn-primary w-full"
+                    className="btn rounded-full btn-xs btn-outline btn-primary w-full"
                   >
                     Register
                   </Link>
@@ -175,11 +177,7 @@ const Navbar = () => {
               )}
             </ul>
           </div>
-
-          <Link to="/" className="lobster flex items-center gap-1">
-            <GiSkills className="text-primary text-2xl" />{" "}
-            <h3 className="text-2xl">SkillSwap</h3>
-          </Link>
+          <Logo />{" "}
         </div>
 
         <div className="navbar-center hidden lg:flex">
@@ -276,7 +274,7 @@ const Navbar = () => {
                 <li>
                   <button
                     onClick={handleLogout}
-                    className="btn btn-sm w-full bg-primary  text-base-100 hover:bg-primary/90 transition-all"
+                    className="btn btn-sm w-full bg-primary rounded-full text-base-100 hover:bg-primary/90 transition-all"
                   >
                     Log Out
                   </button>
@@ -287,13 +285,13 @@ const Navbar = () => {
             <>
               <Link
                 to="/auth/login"
-                className="btn btn-primary text-white btn-xs lg:btn-md"
+                className="btn btn-primary rounded-full text-white btn-xs lg:btn-md"
               >
                 Login
               </Link>
               <Link
                 to="/auth/register"
-                className="btn btn-xs lg:btn-md btn-primary btn-outline"
+                className="btn btn-xs rounded-full lg:btn-md btn-primary btn-outline"
               >
                 Register
               </Link>

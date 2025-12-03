@@ -17,7 +17,7 @@ const MainLayout = () => {
   }, []);
 
   return (
-    <div className="bg-secondary/20">
+    <div className="bg-secondary/30">
       <Navbar />
 
       <ScrollToTop />

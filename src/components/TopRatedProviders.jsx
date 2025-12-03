@@ -86,16 +86,16 @@ const TopRatedProviders = () => {
               </p>
               <div className="flex justify-center gap-5 mt-4">
                 <a href="">
-                  <FaSquareFacebook size={28} color="#d56322" />
+                  <FaSquareFacebook size={28} color="#0D9488" />
                 </a>
                 <a href="">
-                  <FaTwitter size={28} color="#d56322" />
+                  <FaTwitter size={28} color="#0D9488" />
                 </a>
                 <a href="">
-                  <FaLinkedin size={28} color="#d56322" />
+                  <FaLinkedin size={28} color="#0D9488" />
                 </a>
                 <a href="">
-                  <FaInstagram size={28} color="#d56322" />
+                  <FaInstagram size={28} color="#0D9488" />
                 </a>
               </div>
             </div>

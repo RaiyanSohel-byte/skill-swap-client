@@ -13,7 +13,7 @@ const SkillCard = () => {
   }, [axiosInstance]);
   return (
     <div>
-      <h3 className="title">Popular Skills</h3>
+      <h3 className="title">Latest Skills</h3>
       <p className="subTitle">
         Discover the newest skills our community is mastering every day
       </p>
@@ -25,7 +25,10 @@ const SkillCard = () => {
         ))}
       </div>
       <div className="flex justify-center mt-10">
-        <Link to={`/all-skills`} className="btn btn-primary btn-outline">
+        <Link
+          to={`/all-skills`}
+          className="btn rounded-full btn-primary btn-outline"
+        >
           Show All
         </Link>
       </div>

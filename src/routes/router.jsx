@@ -93,25 +93,25 @@ export const router = createBrowserRouter([
         path: "about",
         element: <AboutUs />,
       },
+    ],
+  },
+  {
+    path: "auth",
+    element: <AuthLayout />,
+    errorElement: <NotFound />,
+    children: [
       {
-        path: "auth",
-        element: <AuthLayout />,
-        errorElement: <NotFound />,
-        children: [
-          {
-            path: "login",
-            element: <Login />,
-          },
+        path: "login",
+        element: <Login />,
+      },
 
-          {
-            path: "forget-password",
-            element: <ForgetPassword />,
-          },
-          {
-            path: "register",
-            element: <Register />,
-          },
-        ],
+      {
+        path: "forget-password",
+        element: <ForgetPassword />,
+      },
+      {
+        path: "register",
+        element: <Register />,
       },
     ],
   },
