@@ -2,7 +2,7 @@
 
 🌐 Project Links
 
-🌍 Live Site (Client) https://magenta-ganache-45c5e3.netlify.app/
+🌍 Live Site (Client) https://skill-swap-share.netlify.app
 
 🛠️ Server Live API https://skill-swap-server-ten.vercel.app
 
